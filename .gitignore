@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Latex outputs
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz
+*.dvi
+*.nav
+*.out
+*.toc
+*.snm
+*.DS_Store
