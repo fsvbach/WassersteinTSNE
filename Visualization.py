@@ -197,6 +197,24 @@ def plotMixture(mixture, std=1, ax=None):
     ax.set_title(mixture.info)
 
     return fig
+   
+def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', lw=1, r=1, ax=None):
+    if not ax:
+        ax = plt.gca()
+        
+    for i in STDS:
+        mean, width, height, angle = Gaussian.shape(std=i)
+        ell = Ellipse(xy=mean, width=width, height=height, angle=angle, 
+                      edgecolor=color, facecolor='none', 
+                      linewidth=lw, linestyle='--')
+        ax.add_patch(ell)
+        
+    if size:
+        samples = Gaussian.samples(size, seed=13)
+        x,y = samples.T
+        ax.scatter(x,y, color=color, s=r)
+        
+    return ell
 
 def plotWasserstein(Uhist, Vhist, D, opt_res):
     n,m = len(Uhist), len(Vhist)
