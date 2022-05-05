@@ -1,0 +1,30 @@
+from setuptools import setup
+
+setup(
+    name='wassersteinTSNE',
+    version='0.1.0',    
+    description='A package for dimensionality reduction of probability distributions',
+    url='https://github.com/fsvbach/WassersteinTSNE',
+    author='Fynn Bachmann, Philipp Hennig, Dmitry Kobak',
+    author_email='fynn.bachmann@uni-hamburg.de',
+    license='MIT',
+    packages=['WassersteinTSNE'],
+    install_requires=['numpy',
+                      'scipy',
+                      'pandas',
+                      'openTSNE',
+                      'scikit-learn',
+                      'igraph',
+                      'leidenalg',
+                      'matplotlib',                    
+                      ],
+    classifiers=[
+        'Development Status :: 1 - Planning',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: MIT License',  
+        'Operating System :: POSIX :: Linux',        
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+    ],
+)

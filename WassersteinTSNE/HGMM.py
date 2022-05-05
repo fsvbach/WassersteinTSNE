@@ -12,7 +12,7 @@ from .utils import RandomGenerator
 from .Distributions import GaussianDistribution, WishartDistribution, CovarianceMatrix, RotationMatrix
 
 class HierarchicalGaussianMixture:       
-    config = {'datapoints':50, 
+    config = {'units':50, 
               'samples' :15, 
               'features':2,
               'classes':5,
@@ -22,7 +22,7 @@ class HierarchicalGaussianMixture:
     def __init__(self, seed=None, random=True, **kwargs):
         self.config.update(kwargs)
         
-        self.N = self.config['datapoints']
+        self.N = self.config['units']
         self.M = self.config['samples']
         self.F = self.config['features']
         self.K = self.config['classes']
@@ -90,9 +90,29 @@ class HierarchicalGaussianMixture:
                 dataset.append(self.generator.GaussianSamples(datapoint, self.M))
 
         index       = pd.MultiIndex.from_product([range(self.K*self.N), range(self.M)], 
-                                                 names=["Datapoint", "Sample"])
+                                                 names=["Unit", "Sample"])
         self.data   = pd.DataFrame(np.vstack(dataset), index = index)
         return self.data
     
     def labeldict(self):
         return {i: 'C'+str(i//self.N) for i in range(self.K*self.N)}
+
+
+def ToyDataset():
+    mixture = HierarchicalGaussianMixture(seed=13,
+                                        datapoints=100, 
+                                        samples=30, 
+                                        features=2, 
+                                        classes=4,
+                                        random=False)
+
+    C = CovarianceMatrix(RotationMatrix(20), s=[10,0.5])
+    D = CovarianceMatrix(RotationMatrix(110), s=[10,0.5])
+    
+    mixture.set_params(means   = np.array([[30,0],[30,0],[0,0],[0,0]]),
+                       Gammas = [CovarianceMatrix(s=[5,5])]*4,
+                       nus     = np.ones(4)*4,
+                       Lambdas  = [C,D,C,D])
+    
+    return mixture.generate_data()
+
