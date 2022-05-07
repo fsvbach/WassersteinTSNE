@@ -12,10 +12,10 @@ from .utils import RandomGenerator
 from .Distributions import GaussianDistribution, WishartDistribution, CovarianceMatrix, RotationMatrix
 
 class HierarchicalGaussianMixture:       
-    config = {'units':50, 
-              'samples' :15, 
+    config = {'units':100, 
+              'samples' :30, 
               'features':2,
-              'classes':5,
+              'classes':4,
               'ClassMeanDistance': 20,
               'ClassScaleVariance': 5}
          
@@ -114,5 +114,5 @@ def ToyDataset():
                        nus     = np.ones(4)*4,
                        Lambdas  = [C,D,C,D])
     
-    return mixture.generate_data()
+    return mixture
 

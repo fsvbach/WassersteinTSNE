@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse, FancyArrow
 from matplotlib.legend_handler import HandlerPatch
 
-def embedScatter(embedding, title, size=1, ax=None):
+def embedScatter(embedding, title='', size=1, ax=None):
     if not ax:
         ax = plt.gca()
         
@@ -81,13 +81,6 @@ def plotMixture(mixture, std=2, ax=None):
     # plotting grey samples
     xsample, ysample = mixture.data.values.T
     ax.scatter(xsample, ysample, s=0.5, linewidths=0, c='grey', label='Individual samples', zorder=2)
-
-    # storing 1st legend 
-    leg1 = ax.legend(handler_map={Ellipse: HandlerEllipse()}, handletextpad=1,
-                     loc='upper right', title="Hierarchical Structure",
-                     facecolor='white', scatterpoints=4, framealpha=1)    
-    
-    leg1.legendHandles[2]._sizes = [2.5]
     
     handles = []
     labels  = []
@@ -101,7 +94,15 @@ def plotMixture(mixture, std=2, ax=None):
         handles.append(ell)
         labels.append('Class ' +str(i))
         # ax.add_artist(ell)
-        
+
+    
+    # storing 1st legend 
+    leg1 = ax.legend(handler_map={Ellipse: HandlerEllipse()}, handletextpad=1,
+                     loc='upper right', title="Hierarchical Structure",
+                     facecolor='white', scatterpoints=4, framealpha=1)    
+    
+    leg1.legendHandles[2]._sizes = [2.5]
+    
     # adding legends
     leg2 = ax.legend(handles, labels, handler_map={Ellipse: HandlerEllipseRotation()},
                     title="Wishart Scales", loc=("lower left"), ncol=int(np.ceil(mixture.K/2)), facecolor='white',

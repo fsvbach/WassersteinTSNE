@@ -115,4 +115,3 @@ class GaussianWassersteinDistance:
     def matrix(self, w=0.5):
         return np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
     
-    

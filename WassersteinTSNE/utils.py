@@ -6,12 +6,13 @@ Created on Wed Apr 21 10:20:51 2021
 @author: fsvbach
 """
 
+naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'} 
+
 from .Distributions import CovarianceMatrix, arr2cov
 from scipy.stats import special_ortho_group, wishart
 import numpy as np
 import time
 
-naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'} 
 
 class RandomGenerator:
     def __init__(self, seed=None):
