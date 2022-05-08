@@ -8,8 +8,7 @@ Created on Fri May 14 10:36:56 2021
 import numpy as np
 import pandas as pd
 
-from .utils import RandomGenerator
-from .Distributions import GaussianDistribution, WishartDistribution, CovarianceMatrix, RotationMatrix
+from .utils import RandomGenerator, GaussianDistribution, WishartDistribution, CovarianceMatrix, RotationMatrix
 
 class HierarchicalGaussianMixture:       
     config = {'units':100, 
@@ -100,7 +99,7 @@ class HierarchicalGaussianMixture:
 
 def ToyDataset():
     mixture = HierarchicalGaussianMixture(seed=13,
-                                        datapoints=100, 
+                                        units=100, 
                                         samples=30, 
                                         features=2, 
                                         classes=4,
@@ -114,5 +113,5 @@ def ToyDataset():
                        nus     = np.ones(4)*4,
                        Lambdas  = [C,D,C,D])
     
-    return mixture
+    return mixture.generate_data()
 

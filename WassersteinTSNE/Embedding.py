@@ -13,7 +13,7 @@ from openTSNE import TSNE as openTSNE
 from sklearn.manifold import TSNE as skleTSNE
 
 from .Distances import GaussianWassersteinDistance, WassersteinDistanceMatrix
-from .Distributions import Dataset2Gaussians
+from .utils import Dataset2Gaussians
 
 def ComputeTSNE(D, seed=None, perplexity=30, sklearn=False, trafo=None):
     if sklearn:
@@ -38,7 +38,7 @@ def ComputeTSNE(D, seed=None, perplexity=30, sklearn=False, trafo=None):
     return embedding
 
     
-def TSNE(X, y=None, method='gaussian', w=.5):
+def TSNE(X, y=None, seed=None, method='gaussian', w=.5):
     if y:
         X = pd.DataFrame(X, index=y)
     assert isinstance(X, pd.DataFrame)
@@ -53,7 +53,7 @@ def TSNE(X, y=None, method='gaussian', w=.5):
         embedding = ComputeTSNE(D)
     
     else:
-        raise AssertionError()
+        raise AssertionError("Please type method='gaussian' or method='exact'")
     
     return embedding
         

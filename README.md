@@ -1,6 +1,10 @@
 # WassersteinTSNE
 
-see paper at www.arXiv.org/WassersteinTSNE
+This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](). It is a doesn't contain the research code, but
+
+To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](www.github.com/fsvbach/wassersteinTSNE-paper). 
+
+
 
 ## Installation
 
@@ -28,19 +32,19 @@ If you don't have a dataset at hand you can generate a toy dataset by running
 or create a random HGMM
 
 ```
-HGMM = WT.HierarchicalGaussianMixture(seed=67)
-dataset = HGMM.generate_data()
+HGM = WT.HierarchicalGaussianMixture(seed=67)
+dataset = HGM.generate_data()
 ```
 
 By default that creates a HGMM with K=4 classes. This corresponds to a `pd.DataFrame` with N=100 units and M=30 samples each. If each sample has F=2 features, you can visualize the generated HGMM by
 
-`WT.plotMixture(HGMM)`
+`WT.plotMixture(HGM)`
 
 ### Gaussian Wasserstein t-SNE
 
 The straight forward way to embed your hierarchical dataset is 
 
-`embedding = WT.TSNE(seed=67, w=.5)`
+`embedding = WT.TSNE(dataset, seed=67, w=0.5)`
 
 or do the procedure step by step with
 
@@ -56,33 +60,39 @@ Note that the second way offers many tools for further analysis, e.g. you can ob
 
 By adjusting `w` you can put emphasis on the means or covariance matrices of the units: 
 
-`embedding = WTSNE.fit(w=0.7)` 
+`embedding = WT.TSNE(seed=67, w=0.7)` 
 
 All embeddings are returned as a `pd.DataFrame`, which can be visualized with
 
 `WT.embedScatter(embedding, title='DemoEmbedding')`
 
+If you have defined classes, you can pass a dictionary that maps the unit ids to their class
+
+`WT.embedScatter(embedding, labeldict=HGM.labeldict())`
+
+to color the units according to their class.
 
 ## Exact Wasserstein Distances
 
-Despite its complexity it is possibly to compute exact Wasserstein distances of a dataset with
+It is possibly to compute the exact Wasserstein distances of a dataset as well. Depending on the number of units this can take some time. However, for the dataset in `WT.ToyDataset()` the computation of the pairwise distance matrix should take less than 8min on a desktop computer by running
 
-`X = WT.WassersteinDistanceMatrix(dataset)`
+`D = WT.WassersteinDistanceMatrix(dataset)`
 
-This yields the NxN distance matrix which can then be embedded with
+This yields the NxN distance matrix as a `pd.DataFrame` which can then be embedded with
 
 `embedding = WT.ComputeTSNE(D)`
 
-A shortcut for this procedure is given by
+A shortcut for this procedure is provided with
 
-`embedding = WT.TSNE(seed=67, method='exact')`
+`embedding = WT.TSNE(dataset, method='exact')`
 
 
 ## Evaluation
 
-You can use the evaluation ethods of the Leiden algorithm and kNN accuracy with
+We implemented two methods to evaluate the embedding of a hierarchical dataset. 
 
-### knn accuracy
+### kNN Accuracy
+
 
 
 ### Leiden clustering

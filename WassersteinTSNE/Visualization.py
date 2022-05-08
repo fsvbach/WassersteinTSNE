@@ -11,19 +11,22 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse, FancyArrow
 from matplotlib.legend_handler import HandlerPatch
 
-def embedScatter(embedding, title='', size=1, ax=None):
+def embedScatter(embedding, labeldict=None, sizes=1, title='', ax=None):
     if not ax:
         ax = plt.gca()
+    if labeldict:
+        embedding['labels'] = embedding.index.to_series().map(labeldict)
+    else:
+        embedding['labels'] = 'Units'
+    embedding['sizes']  = sizes
+    
+    for label, data in embedding.groupby('labels'):
+        ax.scatter(data['x'], data['y'], s=data['sizes'], label=label)
         
-    for label, data in embedding.groupby(level=0):
-        X, Y = data['x'], data['y']
-        ax.scatter(X, Y, s=size, label=label)
-
     ax.set_xticks([], minor=[])
     ax.set_yticks([], minor=[])
-    # for spine in ['bottom', 'top', 'left', 'right']:
-    #     ax.spines[spine].set_linestyle("dashed")
     ax.set_title(title)
+    ax.legend()
 
 def HandlerArrow(legend, orig_handle,
                       xdescent, ydescent,

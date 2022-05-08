@@ -9,8 +9,8 @@ __credits__ = 'Philipp Hennig, Dmitry Kobak'
 from .Distances import *
 from .Datasets import *
 from .Embedding import * 
+from .Evaluation import *
 from .utils import *
-from .Distributions import *
 from .Visualization import *
 
 

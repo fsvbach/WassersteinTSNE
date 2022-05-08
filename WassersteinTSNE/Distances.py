@@ -11,7 +11,7 @@ import numpy as np
 import scipy.sparse as sp
 
 from scipy.optimize import linprog
-from .Distributions import arr2cov
+from .utils import arr2cov, Timer
 
 def EuclideanDistance(A,B):
     N1 = np.linalg.norm(A, ord=2, axis=1).reshape(-1,1)**2 
@@ -48,25 +48,29 @@ def PairwiseWassersteinDistance(U, V, p=2):
 
     return linprog(-b, A.T, c, bounds=[None, None], method='highs')
     
-def WassersteinDistanceMatrix(dataset, timer=None):
-    data = dataset.index.unique()
-    N = len(data)
+def WassersteinDistanceMatrix(dataset, timer=True):
+    logs = Timer('WSDM', output=False)  
+    if isinstance(dataset.index , pd.MultiIndex):
+        dataset.index = dataset.index.get_level_values(0)
+        
+    unit_ids = dataset.index.unique()
+    N = len(unit_ids )
     K = np.zeros((N,N))
     
     k = 0
     for i in range(N):
         for j in range(i+1, N):
-            opt_res = PairwiseWassersteinDistance(dataset.loc[data[i]], 
-                                                  dataset.loc[data[j]])
+            opt_res = PairwiseWassersteinDistance(dataset.loc[unit_ids[i]], 
+                                                  dataset.loc[unit_ids[j]])
             K[i,j] = -opt_res.fun
             
             if k%250 == 0 and timer:
-                timer.add(f'Completed {k} of {N*(N-1)/2}')
+                logs.add(f'Completed {k} of {N*(N-1)/2}')
             k+=1
     
     K = np.sqrt(K + K.T)
     
-    return pd.DataFrame(K, index=data, columns=data)
+    return pd.DataFrame(K, index=unit_ids , columns=unit_ids)
 
 
 class GaussianWassersteinDistance:
@@ -113,5 +117,6 @@ class GaussianWassersteinDistance:
         return K + K.T
     
     def matrix(self, w=0.5):
-        return np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
+        K =  np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
+        return pd.DataFrame(K, index=self.index , columns=self.index)
     
