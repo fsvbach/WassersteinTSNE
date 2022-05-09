@@ -1,6 +1,6 @@
 # WassersteinTSNE
 
-This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](www.arxiv.org). 
+This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](https://arxiv.org). 
 
 To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](https://github.com/fsvbach/wassersteinTSNE-paper), which uses a previous version of this package. 
 
