@@ -1,22 +1,29 @@
 # WassersteinTSNE
 
-This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](). It is a doesn't contain the research code, but
+This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](). 
 
-To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](www.github.com/fsvbach/wassersteinTSNE-paper). 
+To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](www.github.com/fsvbach/wassersteinTSNE-paper), which uses a previous version of this package. 
 
-
+As this is work-in-progress constructive feedback regarding usability is welcome, as well as results of experiments on your own data. Feel free to contact us at any moment.
 
 ## Installation
 
-You can install this package via 
+You can install WassersteinTSNE via 
 
-`pip install WassersteinTSNE`.
+`pip install WassersteinTSNE`
+
+or clone this repository into your working directory. 
 
 ## Basic Usage
 
-First import the package with 
+You may import the package with 
 
 `import WassersteinTSNE as WT`
+
+or 
+
+`from WassesteinTSNE import TSNE`.
+
 
 ### Data 
 
@@ -52,15 +59,7 @@ or do the procedure step by step with
 Gaussians = WT.Dataset2Gaussians(dataset)
 GWD       = WT.GaussianWassersteinDistance(Gaussians)
 embedding = WT.ComputeTSNE(GWD.matrix(w=0.5), seed=67)
-```
-
-Note that the second way offers many tools for further analysis, e.g. you can obtain the distance matrix for any value of `w` with 
-
-`D = GWD.matrix(w=0.5)`.
-
-By adjusting `w` you can put emphasis on the means or covariance matrices of the units: 
-
-`embedding = WT.TSNE(seed=67, w=0.7)` 
+```.
 
 All embeddings are returned as a `pd.DataFrame`, which can be visualized with
 
@@ -70,11 +69,17 @@ If you have defined classes, you can pass a dictionary that maps the unit ids to
 
 `WT.embedScatter(embedding, labeldict=HGM.labeldict())`
 
-to color the units according to their class.
+to color the units according to their class. By adjusting the hyperparameter `w` you can put emphasis on the means or covariance matrices of the units. With  
+
+`D = GWD.matrix(w=0.7)` 
+
+you can obtain the distance matrix for any value of `w`. To visualize a range of matrices you may call 
+
+`WT.plotMatrices([GWD.matrix(w=w) for w in WT.naming.keys()], WT.naming.values())`
 
 ## Exact Wasserstein Distances
 
-It is possibly to compute the exact Wasserstein distances of a dataset as well. Depending on the number of units this can take some time. However, for the dataset in `WT.ToyDataset()` the computation of the pairwise distance matrix should take less than 8min on a desktop computer by running
+It is possible to compute the exact Wasserstein distances of a dataset as well. Depending on the number of units this can take some time. However, for the dataset in `WT.ToyDataset()` the computation of the pairwise distance matrix should take less than 8min on a desktop computer by running
 
 `D = WT.WassersteinDistanceMatrix(dataset)`
 
@@ -89,10 +94,22 @@ A shortcut for this procedure is provided with
 
 ## Evaluation
 
-We implemented two methods to evaluate the embedding of a hierarchical dataset. 
+We implemented two methods to evaluate the embedding of a hierarchical dataset. It is necessary to have the ground truth available as a `dict()` or as a list of labels.
+
+`labels = HGM.labeldict()`
 
 ### kNN Accuracy
 
+The kNN accuracy computes the kNN graph and labels each point by the majority vote of its k nearest neighbors. Using the true labels, the accuracy is then computed with
 
+`WT.knnAccuracy(embedding, labels)`.
 
 ### Leiden clustering
+
+A t-SNE independent method is provided by the Leiden algorithm, that runs directly on the distance matrix. 
+
+`WT.LeidenClusters(D, labels)`
+
+## Acknowledgements
+
+...

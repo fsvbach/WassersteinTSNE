@@ -6,8 +6,6 @@ Created on Wed Apr 21 10:20:51 2021
 @author: fsvbach
 """
 
-naming = {0: 'Euclidean', 0.5: 'Wasserstein', 1: 'Covariance'} 
-
 from scipy.stats import special_ortho_group, wishart
 from scipy.linalg import eigh
 import numpy as np
