@@ -106,7 +106,7 @@ def plotMixture(mixture, std=2, ax=None):
 def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', lw=1, r=1, ax=None):
     fig = None
     if not ax:
-        fig, ax = plt.subplots(figsize=(7,7))
+        fig, ax = plt.subplots(figsize=(5,5))
         
     for i in STDS:
         mean, width, height, angle = Gaussian.shape(std=i)
@@ -125,7 +125,7 @@ def plotGaussian(Gaussian, size=20, STDS=[1,2,3], color='black', lw=1, r=1, ax=N
 def embedScatter(embedding, labeldict=None, sizes=1, title='', ax=None):
     fig = None
     if not ax:
-        fig, ax = plt.subplots(figsize=(7,7))
+        fig, ax = plt.subplots(figsize=(5,5))
         
     if labeldict:
         embedding['labels'] = embedding.index.to_series().map(labeldict)

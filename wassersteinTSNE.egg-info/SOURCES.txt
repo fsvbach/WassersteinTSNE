@@ -13,8 +13,3 @@ WassersteinTSNE.egg-info/SOURCES.txt
 WassersteinTSNE.egg-info/dependency_links.txt
 WassersteinTSNE.egg-info/requires.txt
 WassersteinTSNE.egg-info/top_level.txt
-wassersteinTSNE.egg-info/PKG-INFO
-wassersteinTSNE.egg-info/SOURCES.txt
-wassersteinTSNE.egg-info/dependency_links.txt
-wassersteinTSNE.egg-info/requires.txt
-wassersteinTSNE.egg-info/top_level.txt

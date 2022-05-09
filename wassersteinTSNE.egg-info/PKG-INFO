@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: WassersteinTSNE
-Version: 1.0.0
+Version: 1.0.1
 Summary: A package for dimensionality reduction of probability distributions
 Home-page: https://github.com/fsvbach/WassersteinTSNE
 Author: Fynn Bachmann, Philipp Hennig, Dmitry Kobak

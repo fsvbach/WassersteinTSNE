@@ -46,11 +46,11 @@ def TSNE(X, y=None, seed=None, method='gaussian', w=.5):
     if method == 'gaussian':
         Gaussians = Dataset2Gaussians(X)
         GWD       = GaussianWassersteinDistance(Gaussians)
-        embedding = ComputeTSNE(GWD.matrix(w=w))
+        embedding = ComputeTSNE(GWD.matrix(w=w), seed=seed)
         
     elif method == 'exact':
         D = WassersteinDistanceMatrix(X)
-        embedding = ComputeTSNE(D)
+        embedding = ComputeTSNE(D, seed=seed)
     
     else:
         raise AssertionError("Please type method='gaussian' or method='exact'")

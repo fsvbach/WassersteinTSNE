@@ -40,9 +40,11 @@ class HierarchicalGaussianMixture:
             self.info = f'Custom parameters'
             self.ClassGaussians = None
             self.ClassWisharts  = None
+        
+        self.info += f"\n{self.K} classes à {self.N} datapoints with each {self.M} samples in {self.F} dimensions"
                     
     def _info(self):
-        return f'''Random seed: {self.seed}, ClassMeanDistance: {self.a}, ClassScaleVariance: {self.b}\n{self.K} classes à {self.N} datapoints with each {self.M} samples in {self.F} dimensions'''
+        return f'''Random seed: {self.seed}, ClassMeanDistance: {self.a}, ClassScaleVariance: {self.b}'''
     
     def set_params(self, means=None, Lambdas=None, nus=None, Gammas=None):
         prior = lambda b: WishartDistribution(self.F, CovarianceMatrix(np.eye(self.F), b*np.ones(self.F)))
@@ -113,5 +115,5 @@ def ToyDataset():
                        nus     = np.ones(4)*4,
                        Lambdas  = [C,D,C,D])
     
-    return mixture.generate_data()
+    return mixture.generate_data(), mixture
 
