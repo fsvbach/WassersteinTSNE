@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(
-    name='wassersteinTSNE',
-    version='0.1.0',    
+    name='WassersteinTSNE',
+    version='1.0.0',    
     description='A package for dimensionality reduction of probability distributions',
     url='https://github.com/fsvbach/WassersteinTSNE',
     author='Fynn Bachmann, Philipp Hennig, Dmitry Kobak',

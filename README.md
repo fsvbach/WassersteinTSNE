@@ -1,10 +1,8 @@
 # WassersteinTSNE
 
-This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](). 
+This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](www.arxiv.org). 
 
-To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](www.github.com/fsvbach/wassersteinTSNE-paper), which uses a previous version of this package. 
-
-As this is work-in-progress constructive feedback regarding usability is welcome, as well as results of experiments on your own data. Feel free to contact us at any moment.
+To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](https://github.com/fsvbach/wassersteinTSNE-paper), which uses a previous version of this package. 
 
 ## Installation
 
@@ -59,7 +57,8 @@ or do the procedure step by step with
 Gaussians = WT.Dataset2Gaussians(dataset)
 GWD       = WT.GaussianWassersteinDistance(Gaussians)
 embedding = WT.ComputeTSNE(GWD.matrix(w=0.5), seed=67)
-```.
+```
+
 
 All embeddings are returned as a `pd.DataFrame`, which can be visualized with
 

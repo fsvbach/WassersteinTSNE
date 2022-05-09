@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: WassersteinTSNE
+Version: 1.0.0
+Summary: A package for dimensionality reduction of probability distributions
+Home-page: https://github.com/fsvbach/WassersteinTSNE
+Author: Fynn Bachmann, Philipp Hennig, Dmitry Kobak
+Author-email: fynn.bachmann@uni-hamburg.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+License-File: LICENSE
+
+UNKNOWN
+

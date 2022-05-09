@@ -23,4 +23,4 @@ __pycache__/
 
 # PyPi folders
 
-wassersteinTSNE.egg_info/
+wassersteinTSNE.egg_info/*
