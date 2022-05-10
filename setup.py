@@ -1,14 +1,20 @@
 from setuptools import setup
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 
 setup(
     name='WassersteinTSNE',
-    version='1.0.2',    
+    version='1.0.4',    
     description='A package for dimensionality reduction of probability distributions',
     url='https://github.com/fsvbach/WassersteinTSNE',
     author='Fynn Bachmann, Philipp Hennig, Dmitry Kobak',
     author_email='fynn.bachmann@uni-hamburg.de',
     license='MIT',
     packages=['WassersteinTSNE'],
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     install_requires=['numpy',
                       'scipy',
                       'pandas',

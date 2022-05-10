@@ -50,7 +50,7 @@ By default that creates a HGMM with K=4 classes. This corresponds to a `pd.DataF
 WT.plotMixture(HGM)
 ```
 
-![A visualization of the two dimensional HGMM](Figures/ToyDataset.png)
+![A visualization of the two dimensional HGMM](https://github.com/fsvbach/WassersteinTSNE/Figures/ToyDataset.png)
 
 ### Gaussian Wasserstein t-SNE
 
@@ -69,7 +69,7 @@ embedding = WT.ComputeTSNE(GWD.matrix(w=0.5), seed=67)
 ```
 
 
-All embeddings are returned as a `pd.DataFrame`, which can be visualized with
+This is built upon [openTSNE](https://github.com/pavlin-policar/openTSNE) with the addition, that all embeddings are returned as a `pd.DataFrame`. These can be visualized with
 
 ```
 WT.embedScatter(embedding, title='DemoEmbedding')
@@ -83,7 +83,7 @@ WT.embedScatter(embedding, labeldict=HGM.labeldict())
 
 to color the units according to their class. 
 
-![An Gaussian Wasserstein t-SNE embedding of the HGMM](Figures/ToyEmbedding.png)
+![An Gaussian Wasserstein t-SNE embedding of the HGMM](https://github.com/fsvbach/WassersteinTSNE/Figures/ToyEmbedding.png)
 
 
 By adjusting the hyperparameter `w` you can put emphasis on the means or covariance matrices of the units. With  
@@ -144,6 +144,7 @@ A t-SNE independent method is provided by the Leiden algorithm, that runs direct
 ```
 WT.LeidenClusters(D, labels)
 ```
+
 
 
 ## Acknowledgements
