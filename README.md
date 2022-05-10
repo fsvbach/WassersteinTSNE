@@ -50,7 +50,7 @@ By default that creates a HGMM with K=4 classes. This corresponds to a `pd.DataF
 WT.plotMixture(HGM)
 ```
 
-![A visualization of the two dimensional HGMM](https://github.com/fsvbach/WassersteinTSNE/Figures/ToyDataset.png)
+![A visualization of the two dimensional HGMM](https://github.com/fsvbach/WassersteinTSNE/blob/main/Figures/ToyDataset.png)
 
 ### Gaussian Wasserstein t-SNE
 
@@ -83,7 +83,7 @@ WT.embedScatter(embedding, labeldict=HGM.labeldict())
 
 to color the units according to their class. 
 
-![An Gaussian Wasserstein t-SNE embedding of the HGMM](https://github.com/fsvbach/WassersteinTSNE/Figures/ToyEmbedding.png)
+![An Gaussian Wasserstein t-SNE embedding of the HGMM](https://github.com/fsvbach/WassersteinTSNE/blob/main/Figures/Embedding.png)
 
 
 By adjusting the hyperparameter `w` you can put emphasis on the means or covariance matrices of the units. With  
