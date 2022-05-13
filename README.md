@@ -2,7 +2,7 @@
 
 This package provides the methods described in the _Wasserstein t-SNE_ paper at [www.arXiv.org/WassersteinTSNE](https://arxiv.org). 
 
-To reproduce the figures in the paper, please also check the repository [wassersteinTSNE-paper](https://github.com/fsvbach/wassersteinTSNE-paper), which uses a previous version of this package. 
+To reproduce the figures in that paper, please also check the repository [wassersteinTSNE-paper](https://github.com/fsvbach/wassersteinTSNE-paper).
 
 ## Installation
 
@@ -50,7 +50,7 @@ By default that creates a HGMM with K=4 classes. This corresponds to a `pd.DataF
 WT.plotMixture(HGM)
 ```
 
-![A visualization of the two dimensional HGMM](https://github.com/fsvbach/WassersteinTSNE/blob/main/Figures/ToyDataset.png)
+![A visualization of the two dimensional HGMM](https://github.com/fsvbach/WassersteinTSNE/raw/main/Figures/ToyDataset.png)
 
 ### Gaussian Wasserstein t-SNE
 
@@ -83,7 +83,7 @@ WT.embedScatter(embedding, labeldict=HGM.labeldict())
 
 to color the units according to their class. 
 
-![An Gaussian Wasserstein t-SNE embedding of the HGMM](https://github.com/fsvbach/WassersteinTSNE/blob/main/Figures/Embedding.png)
+![An Gaussian Wasserstein t-SNE embedding of the HGMM](https://github.com/fsvbach/WassersteinTSNE/raw/main/Figures/Embedding.png)
 
 
 By adjusting the hyperparameter `w` you can put emphasis on the means or covariance matrices of the units. With  
@@ -145,8 +145,3 @@ A t-SNE independent method is provided by the Leiden algorithm, that runs direct
 WT.LeidenClusters(D, labels)
 ```
 
-
-
-## Acknowledgements
-
-...

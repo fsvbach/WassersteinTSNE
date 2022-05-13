@@ -21,13 +21,13 @@ def knnAccuracy(embedding, labeldict, k=5):
     -------
     Accuracy as float.
     
-    Note: Since it is not wanted that the label of the test point is used for classification, we multiply the restulting accuracy by the factor of (k+1)/k and subtract 1/k.
+    Note: Since it is not wanted that the label of the test point is used for classification, we multiply the resulting accuracy by the factor of (k+1)/k and subtract 1/k.
     """
     labels = embedding.index.to_series().map(labeldict)
     kNN    = KNeighborsClassifier(k+1)
     kNN.fit(embedding.values, labels)
-    estmte = kNN.predict(embedding.values)
-    return accuracy_score(estmte, labels)*(k+1)/k-1/k
+    estimate = kNN.predict(embedding.values)
+    return accuracy_score(estimate, labels)*(k+1)/k-1/k, estimate
 
 def LeidenClusters(D, labeldict, k=5, res = 0.08, seed=None):
     kNNgraph = kneighbors_graph(D, k)
@@ -38,4 +38,4 @@ def LeidenClusters(D, labeldict, k=5, res = 0.08, seed=None):
     clustering = la.find_partition(G, la.RBConfigurationVertexPartition, 
                                       resolution_parameter = res, seed=seed)
     labels = D.index.to_series().map(labeldict)
-    return cluster.adjusted_rand_score(clustering.membership, labels)
+    return cluster.adjusted_rand_score(clustering.membership, labels), clustering.membership
