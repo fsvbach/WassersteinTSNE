@@ -94,13 +94,15 @@ class GaussianWassersteinDistance:
          
     def EuclideanDistanceMatrix(self, X):
         norms  = np.linalg.norm(X, axis=1, ord=2).reshape((len(X),1))**2
-        matrix = norms + norms.T - 2 * X@X.T
-        return matrix - matrix.min()
+        K = norms + norms.T - 2 * X@X.T
+        np.fill_diagonal(K, 0)
+        return K
     
     def FrobeniusDistanceMatrix(self, X):
         norms = np.linalg.norm(X, ord='fro', axis=(1, 2)).reshape((len(X),1))**2
-        matrix = norms + norms.T - 2 * np.tensordot(X,X, axes=([1,2],[1,2]))
-        return matrix - matrix.min()
+        K = norms + norms.T - 2 * np.tensordot(X,X, axes=([1,2],[1,2]))
+        np.fill_diagonal(K, 0)
+        return K
     
     def PairwiseCovarianceDistance(self, cov1, cov2):
         tmp = cov2.sqrt() @ cov1.array() @ cov2.sqrt()
@@ -117,6 +119,6 @@ class GaussianWassersteinDistance:
         return K + K.T
     
     def matrix(self, w=0.5):
-        K =  np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
+        K = np.sqrt(2-4*(w-0.5)**2)*np.sqrt((1-w)*self.EDM + w*self.CDM)
         return pd.DataFrame(K, index=self.index , columns=self.index)
     
