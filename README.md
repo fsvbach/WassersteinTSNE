@@ -1,6 +1,6 @@
 # WassersteinTSNE
 
-This package provides the methods described in the _Wasserstein t-SNE_ paper on [arXiv.org](http://arxiv.org/abs/2205.07531).
+This package provides the methods described in the _Wasserstein t-SNE_ paper of the proceedings of [ECML/PKDD 2022](https://link.springer.com/chapter/10.1007/978-3-031-26387-3_7).
 
 To reproduce the figures in that paper, please also check the repository [wassersteinTSNE-paper](https://github.com/fsvbach/wassersteinTSNE-paper).
 
@@ -143,5 +143,12 @@ A t-SNE independent method is provided by the Leiden algorithm, that runs direct
 
 ```
 WT.LeidenClusters(D, labels)
+```
+
+## Reference
+Please cite this paper if you use the code in your analysis:
+
+```
+Bachmann, F., Hennig, P., & Kobak, D. (2023). Wasserstein t-SNE. In Machine Learning and Knowledge Discovery in Databases (Vol. 13713, pp. 104–120). Springer International Publishing. https://doi.org/10.1007/978-3-031-26387-3_7
 ```
 
