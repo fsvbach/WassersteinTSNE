@@ -24,3 +24,9 @@ __pycache__/
 # PyPi folders
 wassersteinTSNE.egg-info/
 dist/
+
+# Test-Files
+main.py
+
+# Private files
+misc/
