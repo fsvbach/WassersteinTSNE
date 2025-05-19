@@ -145,3 +145,10 @@ A t-SNE independent method is provided by the Leiden algorithm, that runs direct
 WT.LeidenClusters(D, labels)
 ```
 
+## Reference
+Please cite this paper if you use the code in your analysis:
+
+```
+Bachmann, F., Hennig, P., & Kobak, D. (2023). Wasserstein t-SNE. In Machine Learning and Knowledge Discovery in Databases (Vol. 13713, pp. 104–120). Springer International Publishing. https://doi.org/10.1007/978-3-031-26387-3_7
+```
+
